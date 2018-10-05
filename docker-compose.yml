@@ -1,0 +1,45 @@
+version: '3'
+services:
+  bot:
+    build: .
+    environment:
+      DTH_HOST_CONNECTION_TIMEOUT: ${DTH_HOST_CONNECTION_TIMEOUT}
+      DEBUG: ${DEBUG}
+      PROXY_TYPE: ${PROXY_TYPE}
+      PROXY_HOST: ${PROXY_HOST}
+      PROXY_PORT: ${PROXY_PORT}
+      DHT_NODE_LIST_URL: ${DHT_NODE_LIST_URL}
+      API_DATA_URL: ${API_DATA_URL}
+    volumes:
+      - ./data:/data
+    depends_on:
+      - api
+      - proxy
+    links:
+      - proxy
+      - api
+  proxy:
+    image: peterdavehello/tor-socks-proxy
+    logging:
+      driver: none
+    ports:
+      - "9150:9150"
+  db:
+    image: mongo
+    restart: always
+    logging:
+      driver: none
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: toxbox
+      MONGO_INITDB_ROOT_PASSWORD: toxbot_pass
+    ports:
+      - "27017:27017"
+  api:
+    build:
+      context: ./src/test/mock
+    environment:
+      USE_SSL: ${USE_SSL}
+    logging:
+      driver: json-file
+    ports:
+      - "8183:8183"
