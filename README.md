@@ -1,13 +1,14 @@
 # Demo ToxBot
 
 ## Build / Run
-Build container
+Run install local with python3
 ```bash
-    docker-compose build -t toxbot
+    python -m envv envv
+    . ./venv/bin/activate
 ```
-Up and run container
+Up and run application local
 ```bash
-    docker-compose up toxbot -d
+    FLASK_APP=src/api FLASK_ENV=development flask run
 ```
 ## Get Tox ID
 After running application you can open log file located in data folder and check Tox ID.

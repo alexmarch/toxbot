@@ -1,7 +1,7 @@
 from pytox import Tox
 from time import sleep, strftime, localtime, time
 from math import floor
-from utils import post_data
+from services.api import post_data
 from core import CONFIG
 import os
 

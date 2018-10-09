@@ -8,10 +8,10 @@ def get_dht_nodes():
     return j_resp["nodes"]
 
 def post_data(data, bot):
-    req = urllib2.Request(CONFIG['API_DATA_URL'], urllib.urlencode(data), {'Content-type':'application/json'})
+    req = urllib2.Request(CONFIG['API_ADMIN_ENDPOINT'], urllib.urlencode(data), {'Content-type':'application/json'})
     try:
         content = urllib2.urlopen(req).read()
         return content
     except urllib2.URLError:
-        bot.save_to_log("Wrong post data url %s" % CONFIG['API_DATA_URL'])
+        bot.save_to_log("Wrong post data url %s" % CONFIG['API_ADMIN_ENDPOINT'])
     return None

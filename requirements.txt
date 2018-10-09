@@ -1,0 +1,5 @@
+Flask
+docker
+python-dotenv
+flask-cors
+Flask-HTTPAuth

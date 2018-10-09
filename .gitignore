@@ -1,4 +1,24 @@
 
-!data/.gitkeep
-data/*.log
+logs/*.log
+!logs/.gitkeep
+
+src/api/ids/*
+!src/api/ids/.gitkeep
+
+venv/
+
 *.pyc
+__pycache__/
+
+instance/
+
+.pytest_cache/
+.coverage
+htmlcov/
+
+dist/
+build/
+*.egg-info/
+
+# Editor
+.vscode
